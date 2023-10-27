@@ -6,7 +6,6 @@ import {
 	AnimatePresence,
 } from 'framer-motion';
 import { useRef, useState } from 'react';
-import AvatarProfile from '../../assets/images/image-avatar.png';
 import { IconCart } from '../icons/iconCart';
 import { Navigation } from './navigation';
 import { ProductsCart } from './productsCard';
@@ -23,7 +22,11 @@ export function Header({
 		useState(false);
 	const containerRef = useRef(null);
 	return (
-		<header className='flex p-4  md:py-6 md:justify-between lg:justify-normal items-center max-w-6xl mx-auto border-b  border-gray-300 '>
+		<motion.header
+			initial={{ opacity: 0, y:-50}}
+			animate={{ opacity: 1, y: 0}}
+			transition={{ duration: 0.5, type:'just',delay:0.3, ease: 'easeOut' }}
+			className='flex p-4 [y-animation:-50%]  md:py-6 md:justify-between lg:justify-normal items-center max-w-6xl mx-auto border-b  border-gray-300 '>
 			<motion.div
 				initial={false}
 				animate={isOpen ? 'open' : 'closed'}
@@ -85,9 +88,9 @@ export function Header({
 
 				<img
 					className='md:w-12 md:h-12 w-10 h-10 object-contain rounded-full overflow-hidden border-2'
-					src={AvatarProfile}
+					src='images/image-avatar.png'
 				/>
 			</div>
-		</header>
+		</motion.header>
 	);
 }
